@@ -1,0 +1,32 @@
+<div class="view">
+  <span class="material-symbols-outlined icon" (click)="filterToggle()">
+    sort
+  </span>
+  <div class="pages">
+    <span
+      class="material-symbols-outlined icon"
+      [ngClass]="{ disabled: currentPage === 1 }"
+      (click)="onPreviouspage()"
+    >
+      chevron_left</span
+    >
+    <span>{{ currentPage }}</span>
+    <span>/</span>
+    <span>{{ pages }}</span>
+    <span
+      class="material-symbols-outlined icon"
+      [ngClass]="{ disabled: currentPage === pages }"
+      (click)="onNextPage()"
+    >
+      chevron_right</span
+    >
+  </div>
+  <div>
+    <span class="material-symbols-outlined icon" (click)="onSetCols(2)">
+      drag_indicator
+    </span>
+    <span class="material-symbols-outlined icon" (click)="onSetCols(3)">
+      apps
+    </span>
+  </div>
+</div>

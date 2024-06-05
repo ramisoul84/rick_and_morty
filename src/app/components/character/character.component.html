@@ -1,0 +1,27 @@
+<div class="character">
+  <img [src]="character.image" />
+  <div class="details">
+    <div>
+      <p class="name">{{ character.name }}</p>
+      <div class="status-species">
+        <div
+          class="circle"
+          [ngClass]="{
+            green: character.status === 'Alive',
+            red: character.status === 'Dead',
+            gray: character.status === 'unknown'
+          }"
+        ></div>
+        <p>{{ character.status }} - {{ character.species }}</p>
+      </div>
+    </div>
+    <div>
+      <p>Location:</p>
+      <p>{{ character.location.name }}</p>
+    </div>
+    <div>
+      <p>Episodes:</p>
+      <p>{{ character.episode.length }}</p>
+    </div>
+  </div>
+</div>
