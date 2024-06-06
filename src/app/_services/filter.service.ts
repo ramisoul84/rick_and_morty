@@ -15,6 +15,7 @@ export class FilterService {
   });
   pages = new Subject<number>();
   count = new Subject<number>();
+  loading = new BehaviorSubject<boolean>(true);
   charecters = new Subject<Character[]>();
 
   constructor(private api: ApiService) {
@@ -27,10 +28,22 @@ export class FilterService {
 
   getFilterdCharacters() {
     const filter = { ...this.filter.value, page: this.currentPage.value };
-    this.api.getCharacters(filter).subscribe((data) => {
-      this.count.next(data.info.count);
-      this.pages.next(data.info.pages);
-      this.charecters.next(data.results);
+    this.api.getCharacters(filter).subscribe({
+      next: (data) => {
+        this.count.next(data.info.count);
+        this.pages.next(data.info.pages);
+        this.charecters.next(data.results);
+      },
+      error: (e) => {
+        this.count.next(0);
+        this.pages.next(1);
+        this.charecters.next([]);
+        console.info('No Results Found!!');
+      },
+      complete: () => {
+        this.loading.next(false);
+        console.info('complete');
+      },
     });
   }
 

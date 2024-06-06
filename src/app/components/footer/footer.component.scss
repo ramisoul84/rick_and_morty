@@ -15,3 +15,10 @@ footer {
 a {
   color: var(--color-font);
 }
+
+@media screen and (max-width: 600px) {
+  .info {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
